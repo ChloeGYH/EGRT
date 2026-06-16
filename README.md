@@ -60,4 +60,6 @@ Citation information will be added when the paper metadata is finalized.
 
 ## License
 
-License to be determined. Please contact the authors before redistributing or using the dataset beyond paper review and reproduction.
+This dataset is released under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+
+You may share and adapt the dataset for non-commercial purposes, provided that appropriate credit is given. See `LICENSE` or <https://creativecommons.org/licenses/by-nc/4.0/> for details.
