@@ -4,7 +4,7 @@ This repository contains the public dataset constructed for the associated paper
 
 ## Dataset Files
 
-The dataset is stored under `data/`:
+The PLUS dataset constructed in our work is stored under `data/`:
 
 | File | Records | Description |
 | --- | ---: | --- |
@@ -12,6 +12,15 @@ The dataset is stored under `data/`:
 | `data/FakeTT_PLUS.json` | 1,992 | FakeTT-based samples with video-level analysis, text analysis, cross-modal verification, and overall assessments. |
 
 Both files are JSON arrays. Each item represents one short-video sample.
+
+The original text-modality files from the FakeSV and FakeTT datasets are provided under `reproduction_data/`:
+
+| File | Description |
+| --- | --- |
+| `reproduction_data/FakeSV/data_complete.json` | Original FakeSV text-modality data used for reproduction. |
+| `reproduction_data/FakeTT/data_complete.json` | Original FakeTT text-modality data used for reproduction. |
+| `reproduction_data/FakeSV/data_split/*.txt` | Original FakeSV train/validation/test split files. |
+| `reproduction_data/FakeTT/data_split/*.txt` | Original FakeTT train/validation/test split files. |
 
 ## Field Overview
 
@@ -52,6 +61,33 @@ with Path("data/FakeTT_PLUS.json").open(encoding="utf-8") as f:
     fakett_plus = json.load(f)
 
 print(len(fakesv_plus), len(fakett_plus))
+```
+
+## Models and Checkpoints
+
+The released reproduction code and best checkpoints are under `models/`:
+
+| Directory | Checkpoint | Test Accuracy |
+| --- | --- | ---: |
+| `models/fakesv/` | `weights/best_model_sv_0.8616.pth` | 0.8616 |
+| `models/fakett/` | `weights/best_model_fake_TT_bst_0.8462.pth` | 0.8462 |
+
+The checkpoint files are stored with Git LFS.
+
+The original FakeSV/FakeTT text-modality and split files are included under `reproduction_data/`. The extracted multimodal feature files are large and are not included in this repository. They are available from the authors upon request by email. See `FEATURES.md` for required feature filenames, expected paths, and contact information.
+
+Environment details are provided in `ENVIRONMENT.md`.
+
+Example evaluation commands:
+
+```bash
+export EGRT_FAKESV_DATA_DIR=/path/to/FakeSV
+export EGRT_FAKESV_FEATURE_DIR=/path/to/FakeSV/features/features_original
+python models/fakesv/test_best.py --model_path models/fakesv/weights/best_model_sv_0.8616.pth
+
+export EGRT_FAKETT_DATA_DIR=/path/to/FakeTT
+export EGRT_FAKETT_FEATURE_DIR=/path/to/FakeTT/features/features_original
+python models/fakett/test_best.py --model_path models/fakett/weights/best_model_fake_TT_bst_0.8462.pth
 ```
 
 ## Citation

@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 *.log
 *.tmp
+model_results.csv
 .DS_Store
 Thumbs.db
 .env
